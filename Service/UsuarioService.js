@@ -22,10 +22,10 @@ class UsuarioService { //cria uma classe
 
     // atualizar o nome de um usuário pelo ID
     async atualizarUsuario(id, nome) {
-        // Cria um objeto com os dados atualizados (apenas o nome)
+        // cria um objeto com os dados atualizados (apenas o nome)
         const dadosAtualizados = { nome };
 
-        // Chama o repositório para atualizar os dados do usuário no banco
+        // repositório para atualizar os dados do usuário no banco
         return await UsuarioRepository.atualizarUsuario(id, dadosAtualizados);
     }
 }
