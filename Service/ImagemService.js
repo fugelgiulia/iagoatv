@@ -1,7 +1,7 @@
-const ImagemRepository = require('../Repository/ImagemRepository'); // importa o repositório ImagemRepository
-const Imagem = require('../Entity/Imagem'); // importa módulos para manipulação de caminhos e arquivos
+const ImagemRepository = require('../Repository/ImagemRepository'); 
+const Imagem = require('../Entity/Imagem'); 
 
-class ImagemService { //cria uma classe
+class ImagemService { 
     async criarNovaImagem(referencia, titulo) {
         const novaImagem = new Imagem(referencia, titulo);
         return await ImagemRepository.criarImagem(novaImagem);
@@ -22,5 +22,5 @@ class ImagemService { //cria uma classe
 
 }
 
-module.exports = new ImagemService(); // permite que essa classe possa ser usada para outras classes
+module.exports = new ImagemService(); 
 

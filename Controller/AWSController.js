@@ -1,61 +1,61 @@
-const AWSService = require('../Service/AWSService'); // importa o serviço AWSService, que contém funções para trabalhar com imagens na AWS
+const AWSService = require('../Service/AWSService'); 
 
 
-class AWSController { // cria a classe AWSController para lidar com requisições a imagem
+class AWSController { 
 
-        async buscarImagem(req, res) {     // método que buscar por uma imagem na AWS
+        async buscarImagem(req, res) {  
 
         try {
             
-            const { referencia } = req.body;// tem a referência da imagem do corpo da requisição
+            const { referencia } = req.body;
             
-            if (!referencia) { // verifica se a referência foi informada
+            if (!referencia) { 
                 return res.status(400).json({ error: "A referência da imagem é obrigatória." });
             }
             
-            const resultado = await AWSService.buscarImagem(referencia); // chama o serviço para buscar a imagem
+            const resultado = await AWSService.buscarImagem(referencia); 
 
             
-            return res.json(resultado);// retorna o resultado da busca
+            return res.json(resultado);
 
         } catch (error) {
          
-            return res.status(500).json({ error: error.message || "Erro ao buscar a imagem." });   // retorna erro caso algo dê errado
+            return res.status(500).json({ error: error.message || "Erro ao buscar a imagem." });   
         }
     }
 
-    async uploadImagem(req, res) { // fazer upload de uma imagem na AWS
+    async uploadImagem(req, res) { 
         try {
 
-            if (!req.file) {  // verifica se um arquivo foi enviado
+            if (!req.file) {  
                 return res.status(400).json({ error: "Nenhum arquivo enviado." });
             }
             
-            const resultado = await AWSService.uploadImagem(req.file);  //  fazer o upload da imagem
+            const resultado = await AWSService.uploadImagem(req.file);  
             
            
-            return res.json(resultado);  // retorna o resultado do upload
+            return res.json(resultado); 
         } catch (error) {
         
-            return res.status(500).json({ error: error.message || "Erro ao fazer upload da imagem." }); // retorna erro caso algo dê errado       
+            return res.status(500).json({ error: error.message || "Erro ao fazer upload da imagem." });       
          }
     }
 
     
-    async downloadImagem(req, res) { //  fazer download de uma imagem da AWS
+    async downloadImagem(req, res) { 
         try {
            
-            const { referencia } = req.body;  //  tem a referência da imagem do corpo da requisição
+            const { referencia } = req.body;  
             
             
-            if (!referencia) { // verifica se a referência foi informada
+            if (!referencia) { 
                 return res.status(400).json({ error: "A referência da imagem é obrigatória." });
             }
             
-            const filePath = await AWSService.downloadImagem(referencia);  // chama o serviço para baixar a imagem e retorna o caminho do arquivo
+            const filePath = await AWSService.downloadImagem(referencia);  
 
             
-            return res.download(filePath, (err) => {   // envia o arquivo para o usuário
+            return res.download(filePath, (err) => {   
                 if (err) {
                     console.error("Erro ao enviar o arquivo:", err);
                     return res.status(500).json({ error: "Erro ao enviar o arquivo." });
@@ -63,11 +63,10 @@ class AWSController { // cria a classe AWSController para lidar com requisiçõe
                 console.log(`Arquivo enviado com sucesso: ${filePath}`);
             });
         } catch (error) {
-            return res.status(500).json({ error: error.message || "Erro ao baixar a imagem." }); // retorna erro caso algo dê errado
+            return res.status(500).json({ error: error.message || "Erro ao baixar a imagem." }); 
 
         }
     }
 }
 
-module.exports = new AWSController(); //permite que essa classe possa ser usada para outras classes
-
+module.exports = new AWSController(); 

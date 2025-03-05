@@ -1,10 +1,10 @@
-var knex = require('knex')({//importa a biblioteca knex e configura a conexão com o MySQL
-    client: 'mysql', // mostra que vamos usar MySQL
+var knex = require('knex')({
+    client: 'mysql', 
     connection: {
-        host : 'localhost', // servidor do banco de dados (local)     
-        user : 'root',      // usuário do banco
-        password : '',       // senha (123)
-        database : 'db_yago' // nome do banco de dados
+        host : 'localhost', 
+        user : 'root',      
+        password : '',     
+        database : 'db_yago' 
      }
 });
-module.exports = knex // permite que essa classe possa ser usada para outras classes
+module.exports = knex 
