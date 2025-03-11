@@ -1,8 +1,7 @@
 const UsuarioRepository = require('../Repository/UsuarioRepository');
 const Usuario = require('../Entity/Usuario');
 
-class UsuarioService { /
-
+class UsuarioService { 
     async criarNovaUsuario(nome) { 
         const novaUsuario = new Usuario(nome); 
 
